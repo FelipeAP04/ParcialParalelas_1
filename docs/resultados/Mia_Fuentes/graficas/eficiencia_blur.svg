@@ -1,0 +1,48 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="960" height="620" viewBox="0 0 960 620">
+<rect width="100%" height="100%" fill="white"/>
+<text x="480" y="34" text-anchor="middle" font-family="Arial" font-size="24" font-weight="700">Eficiencia - Filtro Blur</text>
+<line x1="90" y1="540" x2="720" y2="540" stroke="#e5e7eb" stroke-width="1"/>
+<text x="78" y="545" text-anchor="end" font-family="Arial" font-size="13" fill="#374151">0</text>
+<line x1="90" y1="446" x2="720" y2="446" stroke="#e5e7eb" stroke-width="1"/>
+<text x="78" y="451" text-anchor="end" font-family="Arial" font-size="13" fill="#374151">22.6</text>
+<line x1="90" y1="352" x2="720" y2="352" stroke="#e5e7eb" stroke-width="1"/>
+<text x="78" y="357" text-anchor="end" font-family="Arial" font-size="13" fill="#374151">45.2</text>
+<line x1="90" y1="258" x2="720" y2="258" stroke="#e5e7eb" stroke-width="1"/>
+<text x="78" y="263" text-anchor="end" font-family="Arial" font-size="13" fill="#374151">67.8</text>
+<line x1="90" y1="164" x2="720" y2="164" stroke="#e5e7eb" stroke-width="1"/>
+<text x="78" y="169" text-anchor="end" font-family="Arial" font-size="13" fill="#374151">90.4</text>
+<line x1="90" y1="70" x2="720" y2="70" stroke="#e5e7eb" stroke-width="1"/>
+<text x="78" y="75" text-anchor="end" font-family="Arial" font-size="13" fill="#374151">113</text>
+<line x1="90" y1="70" x2="90" y2="540" stroke="#111827" stroke-width="1.5"/>
+<line x1="90" y1="540" x2="720" y2="540" stroke="#111827" stroke-width="1.5"/>
+<line x1="90" y1="540" x2="90" y2="546" stroke="#111827"/>
+<text x="90" y="568" text-anchor="middle" font-family="Arial" font-size="14">1</text>
+<line x1="180" y1="540" x2="180" y2="546" stroke="#111827"/>
+<text x="180" y="568" text-anchor="middle" font-family="Arial" font-size="14">2</text>
+<line x1="360" y1="540" x2="360" y2="546" stroke="#111827"/>
+<text x="360" y="568" text-anchor="middle" font-family="Arial" font-size="14">4</text>
+<line x1="720" y1="540" x2="720" y2="546" stroke="#111827"/>
+<text x="720" y="568" text-anchor="middle" font-family="Arial" font-size="14">8</text>
+<text x="405" y="596" text-anchor="middle" font-family="Arial" font-size="16">Numero de hilos</text>
+<text transform="translate(24 305) rotate(-90)" text-anchor="middle" font-family="Arial" font-size="16">Eficiencia (%)</text>
+<polyline points="90,142.420614263404 180,127.245828548267 360,249.296793224855 720,359.76401179941" fill="none" stroke="#2563eb" stroke-width="3"/>
+<circle cx="90" cy="142.420614263404" r="5" fill="#2563eb"/>
+<circle cx="180" cy="127.245828548267" r="5" fill="#2563eb"/>
+<circle cx="360" cy="249.296793224855" r="5" fill="#2563eb"/>
+<circle cx="720" cy="359.76401179941" r="5" fill="#2563eb"/>
+<line x1="760" y1="95" x2="798" y2="95" stroke="#2563eb" stroke-width="3"/>
+<circle cx="779" cy="95" r="5" fill="#2563eb"/>
+<text x="808" y="100" font-family="Arial" font-size="14">3840x2160</text>
+<polyline points="90,163.263183130596 180,206.823377581121 360,336.014312804768 720,363.871389029667" fill="none" stroke="#dc2626" stroke-width="3"/>
+<circle cx="90" cy="163.263183130596" r="5" fill="#dc2626"/>
+<circle cx="180" cy="206.823377581121" r="5" fill="#dc2626"/>
+<circle cx="360" cy="336.014312804768" r="5" fill="#dc2626"/>
+<circle cx="720" cy="363.871389029667" r="5" fill="#dc2626"/>
+<line x1="760" y1="123" x2="798" y2="123" stroke="#dc2626" stroke-width="3"/>
+<circle cx="779" cy="123" r="5" fill="#dc2626"/>
+<text x="808" y="128" font-family="Arial" font-size="14">7680x4320</text>
+<line x1="90" y1="124.070796460177" x2="720" y2="124.070796460177" stroke="#111827" stroke-width="2.5" stroke-dasharray="8 6"/>
+<line x1="760" y1="151" x2="798" y2="151" stroke="#111827" stroke-width="2.5" stroke-dasharray="8 6"/>
+<text x="808" y="156" font-family="Arial" font-size="14">Eficiencia ideal</text>
+</svg>
+
