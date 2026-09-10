@@ -1,4 +1,29 @@
-# ParcialParalelas_1
+# Los Evita Bloqueos
+
+Consultoría de optimización de software, nuestro objetivo es ser consultoría para comparar soluciones secuenciales y paralelas, medir cuándo OpenMP produce una mejora real y documentar los casos donde el overhead o el hardware limitan el escalamiento. Somos una consultoría de software que busca mejorar el rendimiento de programas mediante la paralelización y optimización de código.
+
+## Integrantes
+
+- **Vianka Vanessa Castro Ordoñez** — 23201 
+- **Mia Alejandra Fuentes Mérida** — 23775 
+- **Jorge Luis Felipe Aguilar Portillo** — 23195
+
+## Repositorio
+
+- GitHub: [FelipeAP04/ParcialParalelas_1](https://github.com/FelipeAP04/ParcialParalelas_1)
+- URL para clonar: `https://github.com/FelipeAP04/ParcialParalelas_1.git`
+
+```bash
+git clone https://github.com/FelipeAP04/ParcialParalelas_1.git
+cd ParcialParalelas_1
+```
+
+## Problemas elegidos
+
+1. **Multiplicación de matrices densas:** versión secuencial con recorrido `i-k-j` y versión OpenMP por bloques de `32 x 32` usando `collapse(2)` y `schedule(static)`.
+2. **Filtro blur en escala de grises:** versión secuencial con ventana deslizante y versión OpenMP dividida por filas usando `schedule(static)`.
+
+Las entradas se generan de forma determinista. Cada programa imprime un checksum que permite comprobar que la versión secuencial y la paralela producen el mismo resultado.
 
 ## Estructura
 
@@ -11,11 +36,19 @@
   blur_paralelo.c
 /docs
   contexto_y_datos.md
+  estrategia_paralelizacion.md
+  /resultados
+    /Mia_Fuentes
+    /Vianka_Castro
+benchmark.ps1
+generar_graficas.ps1
 ```
+
+Cada carpeta individual de resultados contiene el CSV de corridas, estadísticas resumidas, análisis de speedup/eficiencia y gráficas.
 
 ## Compilación
 
-Desde la raíz del proyecto:
+Se necesita GCC con soporte para OpenMP. Desde la raíz del proyecto:
 
 ```bash
 gcc -O2 -fopenmp secuencial/matrices_secuencial.c -o matrices_secuencial
@@ -24,54 +57,60 @@ gcc -O2 -fopenmp secuencial/blur_secuencial.c -o blur_secuencial
 gcc -O2 -fopenmp paralelo/blur_paralelo.c -o blur_paralelo
 ```
 
-## Pruebas rápidas
+En PowerShell con MSYS2 instalado en `C:\msys64`:
 
-### Multiplicación de matrices
-
-```bash
-./matrices_secuencial 512
-./matrices_paralelo 512 4 32
+```powershell
+$env:PATH = "C:\msys64\ucrt64\bin;$env:PATH"
+gcc -O2 -fopenmp secuencial/matrices_secuencial.c -o matrices_secuencial.exe
+gcc -O2 -fopenmp paralelo/matrices_paralelo.c -o matrices_paralelo.exe
+gcc -O2 -fopenmp secuencial/blur_secuencial.c -o blur_secuencial.exe
+gcc -O2 -fopenmp paralelo/blur_paralelo.c -o blur_paralelo.exe
 ```
 
-El `Checksum` de ambas ejecuciones debe ser el mismo.
+## Pruebas rápidas de correctitud
 
-Para pruebas de rendimiento:
+```powershell
+.\matrices_secuencial.exe 512
+.\matrices_paralelo.exe 512 4 32
 
-```bash
-./matrices_secuencial 1024
-./matrices_paralelo 1024 2 32
-./matrices_paralelo 1024 4 32
-./matrices_paralelo 1024 8 32
+.\blur_secuencial.exe 1920 1080
+.\blur_paralelo.exe 1920 1080 4
 ```
 
-### Blur
+Para cada problema, ambos checksums deben ser exactamente iguales.
 
-```bash
-./blur_secuencial 1920 1080
-./blur_paralelo 1920 1080 4
+## Benchmark individual
+
+El script hace una corrida de calentamiento y 5 corridas medidas para cada configuración. Evalúa matrices de `1024`, `1536` y `2048`; blur en `3840x2160` y `7680x4320`; y OpenMP con `1`, `2`, `4` y `8` hilos.
+
+```powershell
+.\benchmark.ps1 -Integrante "Nombre Apellido"
 ```
 
-El `Checksum` de ambas ejecuciones debe ser el mismo.
+Para una validación corta antes del benchmark completo:
 
-Para acercarse al caso 8K:
-
-```bash
-./blur_secuencial 7680 4320
-./blur_paralelo 7680 4320 2
-./blur_paralelo 7680 4320 4
-./blur_paralelo 7680 4320 8
+```powershell
+.\benchmark.ps1 -Integrante "Nombre Apellido" -Quick
 ```
 
-## Qué validar antes de medir
+Los archivos se crean en `docs/resultados/Nombre_Apellido/`. Para generar las cuatro gráficas desde el CSV resumen:
 
-1. La versión secuencial y paralela deben producir el mismo `Checksum` para la misma entrada.
-2. Hacer varias corridas de cada configuración y no quedarse con una sola medición.
-3. Medir con 1, 2, 4 y 8 hilos si el equipo lo permite.
-4. No incluir impresión de matrices o imágenes dentro de la región medida.
+```powershell
+.\generar_graficas.ps1 -Integrante "Nombre_Apellido"
+```
 
-## Fórmulas para la siguiente sección
+## Resultados disponibles
+
+- [Resultados de Mia Fuentes](docs/resultados/Mia_Fuentes/resultados_metricas.md)
+- [Resultados de Vianka Castro](docs/resultados/Vianka_Castro/resultados_metricas.md)
+
+
+## Métricas
 
 ```text
-Speedup = tiempo_secuencial / tiempo_paralelo
-Eficiencia = speedup / numero_de_hilos
+Speedup(p) = tiempo_secuencial / tiempo_paralelo(p)
+Eficiencia(p) = Speedup(p) / p
+Eficiencia (%) = Eficiencia(p) x 100
 ```
+
+No se debe concluir que más hilos siempre son mejores. Los resultados se interpretan considerando overhead, caché, ancho de banda de memoria, núcleos físicos, hilos lógicos y variación entre corridas.

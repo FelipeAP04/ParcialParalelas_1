@@ -1,0 +1,46 @@
+EVIDENCIA DE CORRIDAS - VIANKA VANESSA CASTRO ORDOÑEZ (23201)
+Fecha: 2026-09-09
+Compilador: gcc.exe (Rev6, Built by MSYS2 project) 16.1.0
+Procesador: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz
+
+NOTA: Este archivo conserva salidas reales de una ejecución representativa.
+Para el requisito visual del parcial, abrir PowerShell en la raíz del repositorio,
+repetir estos comandos y tomar una captura donde se vean ambos checksums iguales.
+
+PS> .\matrices_secuencial.exe 1024
+Multiplicacion secuencial
+Tamano: 1024 x 1024
+Tiempo: 1.241000 s
+Checksum: 21743265744
+
+PS> .\matrices_paralelo.exe 1024 8 32
+Multiplicacion paralela por bloques
+Tamano: 1024 x 1024
+Hilos: 8
+Bloque: 32 x 32
+Tiempo: 0.675000 s
+Checksum: 21743265744
+
+VALIDACION MATRICES: OK - los checksums coinciden.
+
+PS> .\blur_secuencial.exe 7680 4320
+Blur secuencial con ventana deslizante
+Imagen: 7680 x 4320
+Tiempo: 0.689000 s
+Checksum: 4185869886
+
+PS> .\blur_paralelo.exe 7680 4320 8
+Blur paralelo con ventana deslizante
+Imagen: 7680 x 4320
+Hilos: 8
+Tiempo: 0.161000 s
+Checksum: 4185869886
+
+VALIDACION BLUR: OK - los checksums coinciden.
+
+Benchmark completo:
+PS> .\benchmark.ps1 -Integrante "Vianka Castro"
+
+El benchmark completo hace una corrida de calentamiento y cinco corridas medidas
+para cada tamaño y cada configuración de 1, 2, 4 y 8 hilos. Sus resultados están
+en benchmark_raw.csv y benchmark_summary.csv.
