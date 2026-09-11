@@ -1,0 +1,48 @@
+Equipo
+======
+MacBook Pro Mac16,8
+Apple M4 Pro: 14 nucleos (10 de rendimiento y 4 de eficiencia)
+24 GB de memoria
+macOS 26.6.2 (25G83), arm64
+Apple Clang 21.0.0 y Homebrew libomp 22.1.8
+
+Compilacion
+===========
+OMP=/opt/homebrew/opt/libomp
+clang -O2 -Xpreprocessor -fopenmp -I"$OMP/include" secuencial/matrices_secuencial.c -L"$OMP/lib" -Wl,-rpath,"$OMP/lib" -lomp -o matrices_secuencial
+clang -O2 -Xpreprocessor -fopenmp -I"$OMP/include" paralelo/matrices_paralelo.c -L"$OMP/lib" -Wl,-rpath,"$OMP/lib" -lomp -o matrices_paralelo
+clang -O2 -Xpreprocessor -fopenmp -I"$OMP/include" secuencial/blur_secuencial.c -L"$OMP/lib" -Wl,-rpath,"$OMP/lib" -lomp -o blur_secuencial
+clang -O2 -Xpreprocessor -fopenmp -I"$OMP/include" paralelo/blur_paralelo.c -L"$OMP/lib" -Wl,-rpath,"$OMP/lib" -lomp -o blur_paralelo
+
+Corridas representativas posteriores al benchmark
+=================================================
+$ ./matrices_secuencial 2048
+Multiplicacion secuencial
+Tamano: 2048 x 2048
+Tiempo: 0.532161 s
+Checksum: 173946163208
+
+$ ./matrices_paralelo 2048 8 32
+Multiplicacion paralela por bloques
+Tamano: 2048 x 2048
+Hilos: 8
+Bloque: 32 x 32
+Tiempo: 0.221078 s
+Checksum: 173946163208
+
+$ ./blur_secuencial 7680 4320
+Blur secuencial con ventana deslizante
+Imagen: 7680 x 4320
+Tiempo: 0.073135 s
+Checksum: 4185869886
+
+$ ./blur_paralelo 7680 4320 8
+Blur paralelo con ventana deslizante
+Imagen: 7680 x 4320
+Hilos: 8
+Tiempo: 0.011239 s
+Checksum: 4185869886
+
+Los checksums secuenciales y paralelos tambien coincidieron en las 125
+mediciones del benchmark. Los tiempos anteriores son evidencia adicional y no
+forman parte de los promedios guardados en benchmark_summary.csv.

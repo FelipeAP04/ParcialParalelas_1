@@ -103,6 +103,7 @@ Los archivos se crean en `docs/resultados/Nombre_Apellido/`. Para generar las cu
 
 - [Resultados de Mia Fuentes](docs/resultados/Mia_Fuentes/resultados_metricas.md)
 - [Resultados de Vianka Castro](docs/resultados/Vianka_Castro/resultados_metricas.md)
+- [Resultados de Jorge Felipe Aguilar](docs/resultados/Jorge_Luis_Felipe_Aguilar_Portillo/resultados_metricas.md)
 
 
 ## Métricas
